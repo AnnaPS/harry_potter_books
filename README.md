@@ -1,16 +1,29 @@
-# library_example
+# Harry Potter Books
 
-A new Flutter project.
+Simple app to show a list of Harry Potter books.
 
-## Getting Started
+This app doesn't get data from an API, it's a offline data.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Architecture of the project
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+````
+ - repository
+ - ui
+    - feature
+        - pages
+        - bloc
+  - widgets
+````
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Libraries used
+
+
+- [Flutter bloc](https://pub.dev/packages/flutter_bloc)
+- [Equatable](https://pub.dev/packages/equatable)
+
+
+### Test coverage
+
+- Unit test
+- Bloc test
