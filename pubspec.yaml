@@ -38,6 +38,7 @@ dependencies:
   equatable: ^2.0.3
   mocktail: ^0.2.0
   bloc_test: ^9.0.2
+  mocktail_image_network: ^0.2.0
 
 dev_dependencies:
   flutter_test:

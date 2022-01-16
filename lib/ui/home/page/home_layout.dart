@@ -18,11 +18,12 @@ class HomeLayout extends StatelessWidget {
         builder: (context, state) {
           return state.status.isSuccess
               ? ListView.builder(
+                  key: const Key('catalog_list_key'),
                   padding: const EdgeInsets.all(10.0),
                   itemBuilder: (context, index) {
                     var book = state.bookCatalog[index];
                     return ListTile(
-                      key: ValueKey('book$index'),
+                      key: Key('book$index'),
                       title: Text(book.title),
                       subtitle: Text(book.author.fullName),
                       leading: Hero(
@@ -50,7 +51,9 @@ class HomeLayout extends StatelessWidget {
                 )
               : state.status.isLoading
                   ? const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        key: Key('loader_key'),
+                      ),
                     )
                   : const Center(
                       child: Text('No data'),

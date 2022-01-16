@@ -6,8 +6,6 @@ import 'package:mocktail/mocktail.dart';
 
 class MockRepository extends Mock implements LibraryRepository {}
 
-class MockBook extends Mock implements Book {}
-
 void main() {
   late LibraryRepository libraryRepository;
 

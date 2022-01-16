@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:library_example/repository/library_repository.dart';
+import 'package:library_example/repository/models/author.dart';
 import 'package:library_example/repository/models/book.dart';
 import 'package:library_example/ui/home/home_barrel.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,6 +11,19 @@ class MockRepository extends Mock implements LibraryRepository {}
 void main() {
   late LibraryRepository libraryRepository;
 
+  final books = List.generate(
+    4,
+    (index) => Book(
+      author: const Author(
+        'J.K Rowling',
+        'British',
+      ),
+      year: 1991,
+      title: 'Harry Potter $index',
+      summary: 'description',
+      image: 'http:someimageurl.com',
+    ),
+  );
   setUp(() {
     libraryRepository = MockRepository();
   });
@@ -34,7 +48,7 @@ void main() {
       setUp: () {
         when(() => libraryRepository.getBookCatalog()).thenAnswer(
           (_) async => Future.value(
-            <Book>[],
+            books,
           ),
         );
       },
@@ -44,7 +58,7 @@ void main() {
         HomeState().copyWith(status: HomeStatus.loading),
         HomeState().copyWith(
           status: HomeStatus.success,
-          bookCatalog: <Book>[],
+          bookCatalog: books,
         )
       ],
       verify: (_) {
