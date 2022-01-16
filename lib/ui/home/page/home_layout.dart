@@ -22,7 +22,7 @@ class HomeLayout extends StatelessWidget {
                   itemBuilder: (context, index) {
                     var book = state.bookCatalog[index];
                     return ListTile(
-                      key: ValueKey('BookTile$index'),
+                      key: ValueKey('book$index'),
                       title: Text(book.title),
                       subtitle: Text(book.author.fullName),
                       leading: Hero(
