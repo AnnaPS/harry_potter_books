@@ -12,14 +12,17 @@ extension PumpApp on WidgetTester {
   Future<void> pumpHome(
     Widget widget, {
     LibraryRepository? libraryRepository,
+    HomeBloc? homeBloc,
   }) async {
     return await pumpWidget(
       RepositoryProvider(
         create: (_) => libraryRepository ?? MockLibraryRepository(),
         child: BlocProvider(
-          create: (context) =>
-              HomeBloc(repository: libraryRepository ?? MockLibraryRepository())
-                ..add(GetBookCatalog()),
+          create: (context) => homeBloc ??
+              HomeBloc(
+                repository: libraryRepository ?? MockLibraryRepository(),
+              )
+            ..add(GetBookCatalog()),
           child: MaterialApp(
             home: Scaffold(body: widget),
           ),

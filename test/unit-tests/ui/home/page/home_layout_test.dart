@@ -12,20 +12,16 @@ import '../../../../helpers/pump_app.dart';
 class MockHomeBloc extends MockBloc<HomeEvent, HomeState> implements HomeBloc {}
 
 void main() {
-  late LibraryRepository libraryRepository;
   late HomeBloc bloc;
 
   setUp(() {
-    libraryRepository = LibraryRepository();
     bloc = MockHomeBloc();
   });
 
   group('HomeLayout ', () {
     testWidgets('renders HomeLayout', (tester) async {
       await mockNetworkImages(() async {
-        await tester.pumpHome(
-          const HomeLayout(),
-        );
+        await tester.pumpHome(const HomeLayout(), homeBloc: bloc);
 
         expect(find.byType(HomeLayout), findsOneWidget);
       });
@@ -38,6 +34,7 @@ void main() {
       await mockNetworkImages(() async {
         await tester.pumpHome(
           const HomeLayout(),
+          homeBloc: bloc,
         );
         await tester.pumpAndSettle();
         final catalogListView =
@@ -48,15 +45,16 @@ void main() {
 
     testWidgets('show circular progress indicator when HomeStatus.isLoading',
         (tester) async {
+      const loaderKey = 'loader_key';
       when(() => bloc.state).thenReturn(
         HomeState(status: HomeStatus.loading),
       );
       await mockNetworkImages(() async {
         await tester.pumpHome(
           const HomeLayout(),
+          homeBloc: bloc,
         );
-        await tester.pumpAndSettle();
-        expect(find.byKey(const Key('loader_key')), findsOneWidget);
+        expect(find.byKey(const Key(loaderKey)), findsOneWidget);
       });
     });
 
