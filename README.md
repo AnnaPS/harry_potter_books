@@ -2,7 +2,7 @@
 
 Simple app to show a list of Harry Potter books.
 
-This app doesn't get data from an API, it's a offline data.
+This app doesn't get data from an API, it's offline data.
 
 
 ## Architecture of the project
